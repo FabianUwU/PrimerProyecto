@@ -1,218 +1,98 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/FabianUwU/PrimerProyecto/blob/main/FabianGonzalez_PGY1121_006V_Vespertina\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "yjUisNq4RyW2",
-        "outputId": "3eb43923-44da-4997-b6aa-670ea91f2f15"
-      },
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "['valor de 3000$ con una escala de 90m²']\n"
-          ]
-        }
-      ],
-      "source": [
-        "Lote = [[\"valor de 100$ con una escala de 10m²\"],[\"valor de 200$ con una escala de 20m²\"],[\"valor de 300$ con una escala de 30m²\"],\n",
-        "         [\"valor de 500$ con una escala de 35m²\"],[\"valor de 600.000$ con una escala de 100m²\"],[\"valor de 400$ con una escala de 70m²\"],\n",
-        "         [\"valor de 200$ con una escala de 20m²\"],[\"valor de 80.000$ con una escala de 300m²\"],[\"valor de 3000$ con una escala de 90m²\"]]\n",
-        "\n"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "\n",
-        "precio_por_hectarea = 1000000\n",
-        "\n",
-        "\n",
-        "lotes_disponibles =  [[\"[ ]\",\"[ ]\",\"[ ]\"],\n",
-        "                     [\"[ ]\",\"[ ]\",\"[ ]\"],\n",
-        "                     [\"[ ]\",\"[ ]\",\"[ ]\"]]\n",
-        "\n",
-        "Lote = [[[\"valor de 100$ con una escala de 10m²\"],[\"valor de 200$ con una escala de 20m²\"],[\"valor de 300$ con una escala de 30m²\"]],\n",
-        "         [[\"valor de 500$ con una escala de 35m²\"],[\"valor de 600.000$ con una escala de 100m²\"],[\"valor de 400$ con una escala de 70m²\"]],\n",
-        "         [[\"valor de 200$ con una escala de 20m²\"],[\"valor de 80.000$ con una escala de 300m²\"],[\"valor de 3000$ con una escala de 90m²\"]]]\n",
-        "\n",
-        "lotes_seleccionados = []\n",
-        "\n",
-        "clientes = []\n",
-        "\n",
-        "\n",
-        "def mostrar_disponibilidad_lotes():\n",
-        "    print(\"Lotes Disponibles:\")\n",
-        "    for fila in lotes_disponibles:\n",
-        "        for lote in fila:\n",
-        "            print(lote, end=' ')\n",
-        "        print()\n",
-        "\n",
-        "\n",
-        "def seleccionar_lote():\n",
-        "    while True:\n",
-        "        try:\n",
-        "            fila = int(input(\"Ingrese el número de fila del lote: \"))\n",
-        "            columna = int(input(\"Ingrese el número de columna del lote: \"))\n",
-        "        except:\n",
-        "            print(\"Opción inválida. Intente nuevamente.\")\n",
-        "            continue\n",
-        "        if fila < 0 or fila >= 3 or columna < 0 or columna >= 3:\n",
-        "            print(\"Coordenadas inválidas. Intente nuevamente.\")\n",
-        "            continue\n",
-        "\n",
-        "        if lotes_disponibles[fila][columna] == \"[ ]\":\n",
-        "            break\n",
-        "        else:\n",
-        "            print(\"El lote seleccionado no está disponible. Por favor, elija otro.\")\n",
-        "\n",
-        "\n",
-        "    rut = input(\"Ingrese el RUT del cliente: \")\n",
-        "    nombre = input(\"Ingrese el nombre completo del cliente: \")\n",
-        "    telefono = input(\"Ingrese el número de teléfono del cliente: \")\n",
-        "    email = input(\"Ingrese el correo electrónico del cliente: \")\n",
-        "\n",
-        "    lotes_disponibles[fila][columna]=\"[X]\"\n",
-        "    clientes.append((rut, nombre, telefono, email, fila, columna))\n",
-        "\n",
-        "    print(\"Lote seleccionado con éxito.\")\n",
-        "\n",
-        "def mostrar_clientes():\n",
-        "    if len(clientes) == 0:\n",
-        "        print(\"No hay clientes registrados.\")\n",
-        "        return\n",
-        "\n",
-        "    print(\"Lista de Clientes:\")\n",
-        "    for cliente in clientes:\n",
-        "        rut, nombre, telefono, email = cliente\n",
-        "        print(f\"RUT: {rut}\")\n",
-        "        print(f\"Nombre: {nombre}\")\n",
-        "        print(f\"Teléfono: {telefono}\")\n",
-        "        print(f\"Email: {email}\")\n",
-        "\n",
-        "def mostrar_seleccion():\n",
-        "  aux=input(\"ingrese el rut del cliente\")\n",
-        "  for i in range(len(clientes)):\n",
-        "   if clientes[i][0] == aux:\n",
-        "    print(\"lote seleccionado por cliente: \")\n",
-        "    print(Lote[clientes[i][4]][clientes[i][5]])\n",
-        "\n",
-        "\n",
-        "while True:\n",
-        "    try:\n",
-        "     print(\"Menú Principal:\")\n",
-        "     print(\"1. seleccionar lote\")\n",
-        "     print(\"2. Ver detalles del lote seleccionado\")\n",
-        "     print(\"3. ver lote disponible\")\n",
-        "     print(\"4. Ver Clientes Guardados\")\n",
-        "     print(\"5. Salir\")\n",
-        "\n",
-        "     opcion=int(input(\"selecciona una opcion\"))\n",
-        "     if opcion not in range(1,6):\n",
-        "       print(\"opcion invalida, intentar de nuevo\")\n",
-        "     if opcion==1:\n",
-        "       seleccionar_lote()\n",
-        "     if opcion==2:\n",
-        "       mostrar_seleccion()\n",
-        "     if opcion==3:\n",
-        "       mostrar_disponibilidad_lotes()\n",
-        "     if opcion==4:\n",
-        "       mostrar_clientes()\n",
-        "     if opcion==5:\n",
-        "       print(\"salir de la tienda\")\n",
-        "       break\n",
-        "    except:\n",
-        "       print(\"opcion invalida, intenta otra vez\")"
-      ],
-      "metadata": {
-        "id": "sFA2zUlFJGNQ",
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "outputId": "623f7ad8-4966-4d02-d7e0-1781787f34fc"
-      },
-      "execution_count": 27,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Menú Principal:\n",
-            "1. seleccionar lote\n",
-            "2. Ver detalles del lote seleccionado\n",
-            "3. ver lote disponible\n",
-            "4. Ver Clientes Guardados\n",
-            "5. Salir\n",
-            "selecciona una opcion1\n",
-            "Ingrese el número de fila del lote: 1\n",
-            "Ingrese el número de columna del lote: 1\n",
-            "Ingrese el RUT del cliente: 1234566\n",
-            "Ingrese el nombre completo del cliente: asdlkfhj\n",
-            "Ingrese el número de teléfono del cliente: 1432876\n",
-            "Ingrese el correo electrónico del cliente: aslkdjfh\n",
-            "Lote seleccionado con éxito.\n",
-            "Menú Principal:\n",
-            "1. seleccionar lote\n",
-            "2. Ver detalles del lote seleccionado\n",
-            "3. ver lote disponible\n",
-            "4. Ver Clientes Guardados\n",
-            "5. Salir\n",
-            "selecciona una opcion2\n",
-            "ingrese el rut del cliente1234566\n",
-            "lote seleccionado por cliente: \n",
-            "['valor de 600.000$ con una escala de 100m²']\n",
-            "Menú Principal:\n",
-            "1. seleccionar lote\n",
-            "2. Ver detalles del lote seleccionado\n",
-            "3. ver lote disponible\n",
-            "4. Ver Clientes Guardados\n",
-            "5. Salir\n",
-            "selecciona una opcion3\n",
-            "Lotes Disponibles:\n",
-            "[ ] [ ] [ ] \n",
-            "[ ] [X] [ ] \n",
-            "[ ] [ ] [ ] \n",
-            "Menú Principal:\n",
-            "1. seleccionar lote\n",
-            "2. Ver detalles del lote seleccionado\n",
-            "3. ver lote disponible\n",
-            "4. Ver Clientes Guardados\n",
-            "5. Salir\n",
-            "selecciona una opcion5\n",
-            "salir de la tienda\n"
-          ]
-        }
-      ]
-    }
-  ]
-}
+precio_por_hectarea = 1000000
+
+
+lotes_disponibles =  [["[ ]","[ ]","[ ]"],
+                     ["[ ]","[ ]","[ ]"],
+                     ["[ ]","[ ]","[ ]"]]
+
+Lote = [[["valor de 100$ con una escala de 10m²"],["valor de 200$ con una escala de 20m²"],["valor de 300$ con una escala de 30m²"]],
+         [["valor de 500$ con una escala de 35m²"],["valor de 600.000$ con una escala de 100m²"],["valor de 400$ con una escala de 70m²"]],
+         [["valor de 200$ con una escala de 20m²"],["valor de 80.000$ con una escala de 300m²"],["valor de 3000$ con una escala de 90m²"]]]
+
+lotes_seleccionados = []
+
+clientes = []
+
+
+def mostrar_disponibilidad_lotes():
+    print("Lotes Disponibles:")
+    for fila in lotes_disponibles:
+        for lote in fila:
+            print(lote, end=' ')
+        print()
+
+
+def seleccionar_lote():
+    while True:
+        try:
+            fila = int(input("Ingrese el número de fila del lote: "))
+            columna = int(input("Ingrese el número de columna del lote: "))
+        except:
+            print("Opción inválida. Intente nuevamente.")
+            continue
+        if fila < 0 or fila >= 3 or columna < 0 or columna >= 3:
+            print("Coordenadas inválidas. Intente nuevamente.")
+            continue
+
+        if lotes_disponibles[fila][columna] == "[ ]":
+            break
+        else:
+            print("El lote seleccionado no está disponible. Por favor, elija otro.")
+
+
+    rut = input("Ingrese el RUT del cliente: ")
+    nombre = input("Ingrese el nombre completo del cliente: ")
+    telefono = input("Ingrese el número de teléfono del cliente: ")
+    email = input("Ingrese el correo electrónico del cliente: ")
+
+    lotes_disponibles[fila][columna]="[X]"
+    clientes.append((rut, nombre, telefono, email, fila, columna))
+
+    print("Lote seleccionado con éxito.")
+
+def mostrar_clientes():
+    if len(clientes) == 0:
+        print("No hay clientes registrados.")
+        return
+
+    print("Lista de Clientes:")
+    for cliente in clientes:
+        rut, nombre, telefono, email = cliente
+        print(f"RUT: {rut}")
+        print(f"Nombre: {nombre}")
+        print(f"Teléfono: {telefono}")
+        print(f"Email: {email}")
+
+def mostrar_seleccion():
+  aux=input("ingrese el rut del cliente")
+  for i in range(len(clientes)):
+   if clientes[i][0] == aux:
+    print("lote seleccionado por cliente: ")
+    print(Lote[clientes[i][4]][clientes[i][5]])
+
+
+while True:
+    try:
+     print("Menú Principal:")
+     print("1. seleccionar lote")
+     print("2. Ver detalles del lote seleccionado")
+     print("3. ver lote disponible")
+     print("4. Ver Clientes Guardados")
+     print("5. Salir")
+
+     opcion=int(input("selecciona una opcion"))
+     if opcion not in range(1,6):
+       print("opcion invalida, intentar de nuevo")
+     if opcion==1:
+       seleccionar_lote()
+     if opcion==2:
+       mostrar_seleccion()
+     if opcion==3:
+       mostrar_disponibilidad_lotes()
+     if opcion==4:
+       mostrar_clientes()
+     if opcion==5:
+       print("salir de la tienda")
+       break
+    except:
+       print("opcion invalida, intenta otra vez")
